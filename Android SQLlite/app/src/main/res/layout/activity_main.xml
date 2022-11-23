@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+       >
+       <com.google.android.material.appbar.AppBarLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:backgroundTint="#009688"
+           >
+           <androidx.appcompat.widget.Toolbar
+               android:layout_width="match_parent"
+               android:layout_height="?attr/actionBarSize"
+               android:id="@+id/toobar_id"
+               app:menu="@menu/menu_item"
+               app:title="Dictionary"
+               android:titleTextColor="@color/white"/>
+
+           <androidx.appcompat.widget.SearchView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/searchV_id"
+               android:background="@drawable/bgshape"
+               android:elevation="10dp"
+               android:layout_marginHorizontal="15dp"
+               android:layout_marginVertical="7dp"
+               app:iconifiedByDefault="false"/>
+
+       </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerV_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+</LinearLayout>

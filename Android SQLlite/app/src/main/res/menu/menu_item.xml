@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group>
+        <item android:title="Add New Word"
+            android:id="@+id/addword_id"
+            app:showAsAction="collapseActionView"
+            />
+
+        <item android:title="Clear history"
+             android:id="@+id/history_id"
+            app:showAsAction="collapseActionView"
+            />
+
+        <item android:title="Settings"
+            android:id="@+id/settings_id"
+            app:showAsAction="collapseActionView"
+            />
+    </group>
+</menu>
