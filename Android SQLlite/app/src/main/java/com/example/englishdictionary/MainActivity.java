@@ -3,6 +3,7 @@ package com.example.englishdictionary;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.material.textview.MaterialTextView;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<modal> list;
     ArrayList<modal> searchlist;
     mydbhelper db;
-    android.widget.SearchView searchView;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         recyclerView = findViewById(R.id.recyclerV_id);
         searchView = findViewById(R.id.searchV_id);
-        searchView.clearFocus();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         db = new mydbhelper(this);
@@ -57,8 +56,22 @@ public class MainActivity extends AppCompatActivity {
             list.add(modal);
         }
 
-        myadapter myadapter = new myadapter(list);
-        recyclerView.setAdapter(myadapter);
+        myadapter adapter = new myadapter(list);
+        recyclerView.setAdapter(adapter);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -107,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "no data", Toast.LENGTH_SHORT).show();
                             }
 
-                        }
+                            }
                     }
                 });
                 cancel.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
+
     }
 
 }
