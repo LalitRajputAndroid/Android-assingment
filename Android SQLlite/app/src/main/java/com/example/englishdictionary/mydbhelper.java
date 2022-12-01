@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
 public class mydbhelper extends SQLiteOpenHelper {
     private static final String databasename = "mydatabase";
     private  static final int version = 1;
@@ -61,5 +59,10 @@ public class mydbhelper extends SQLiteOpenHelper {
         }else {
             return false;
         }
+    }
+
+    public void deleteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("delete from dictionary");
     }
 }

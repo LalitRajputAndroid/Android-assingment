@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<modal> searchlist;
     mydbhelper db;
     SearchView searchView;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             list.add(modal);
         }
 
-        myadapter adapter = new myadapter(list);
+        myadapter adapter = new myadapter(list,this);
         recyclerView.setAdapter(adapter);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -64,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
 
